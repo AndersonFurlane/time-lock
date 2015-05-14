@@ -17,19 +17,21 @@ ActiveRecord::Schema.define(version: 3) do
     t.integer "user_id"
     t.integer "work_id"
     t.date    "date"
+    t.time    "started"
+    t.time    "lunch"
+    t.time    "returned_lunch"
+    t.time    "finished"
   end
 
   add_index "timers", ["user_id"], name: "index_timers_on_user_id", using: :btree
   add_index "timers", ["work_id"], name: "index_timers_on_work_id", using: :btree
 
   create_table "users", force: true do |t|
+    t.string "name"
   end
 
   create_table "works", force: true do |t|
-    t.time "started"
-    t.time "lunch"
-    t.time "returned_lunch"
-    t.time "finished"
+    t.float "hours_day", limit: 24
   end
 
 end
